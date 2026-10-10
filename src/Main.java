@@ -26,46 +26,65 @@ public Color GetPanesColor(Col col) {
     return null;
 }
 
+static String LabelText() {
+    return "Welcome ColorGenerator".toUpperCase(Locale.ROOT);
+}
 
 void main() {
 
+    JFrame f = new JFrame();
+    JLabel label = new JLabel(LabelText(), SwingConstants.CENTER);
 
 
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setSize(new Dimension(60 * 5, 60 * 2));
 
-    var pane = (JPanel) frame.getContentPane();
-    pane.add(button, BorderLayout.SOUTH);
-    button.setBackground(GetPanesColor(Col.BLACK));
-    button.setForeground(GetPanesColor(Col.WHITE));
-    JPanel panel = new JPanel(new GridLayout());
-    JLabel label_r = new JLabel("R: 255", SwingConstants.CENTER);
-    JLabel label_g = new JLabel("G: 255", SwingConstants.CENTER);
-    JLabel label_b = new JLabel("B: 255", SwingConstants.CENTER);
+    JCheckBox cb = new JCheckBox("Confirm");
+    cb.addActionListener(_ -> {
 
-    pane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
-    button.setPreferredSize(new Dimension(200, 35));
-    button.setFocusPainted(false);
-    label_r.setFont(new Font("Sans-serif", Font.BOLD, 15));
-    label_g.setFont(new Font("Sans-serif", Font.BOLD, 15));
-    label_b.setFont(new Font("Sans-serif", Font.BOLD, 15));
+        f.setVisible(false);
+        var pane = (JPanel) frame.getContentPane();
+        pane.add(button, BorderLayout.SOUTH);
+        button.setBackground(GetPanesColor(Col.BLACK));
+        button.setForeground(GetPanesColor(Col.WHITE));
+        JPanel panel = new JPanel(new GridLayout());
+        JLabel label_r = new JLabel("R: 255", SwingConstants.CENTER);
+        JLabel label_g = new JLabel("G: 255", SwingConstants.CENTER);
+        JLabel label_b = new JLabel("B: 255", SwingConstants.CENTER);
 
-    panel.add(label_r, BorderLayout.CENTER);
-    panel.add(label_g, BorderLayout.CENTER);
-    panel.add(label_b, BorderLayout.CENTER);
+        pane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+        button.setPreferredSize(new Dimension(200, 35));
+        button.setFocusPainted(false);
+        label_r.setFont(new Font("Sans-serif", Font.BOLD, 15));
+        label_g.setFont(new Font("Sans-serif", Font.BOLD, 15));
+        label_b.setFont(new Font("Sans-serif", Font.BOLD, 15));
 
-    button.addActionListener(_ -> {
-        Random r = new Random();
-        int redX = r.nextInt(1, 254 + 1);
-        int greenX = r.nextInt(1, 254 + 1);
-        int blueX = r.nextInt(1, 254 + 1);
-        label_r.setText("R: " + redX);
-        label_g.setText("G: " + greenX);
-        label_b.setText("B: " + blueX);
+        panel.add(label_r, BorderLayout.CENTER);
+        panel.add(label_g, BorderLayout.CENTER);
+        panel.add(label_b, BorderLayout.CENTER);
 
-        panel.setBackground(new Color(redX, greenX, blueX));
+
+        button.addActionListener(_ -> {
+            Random r = new Random();
+            int redX = r.nextInt(1, 254 + 1);
+            int greenX = r.nextInt(1, 254 + 1);
+            int blueX = r.nextInt(1, 254 + 1);
+            label_r.setText("R: " + redX);
+            label_g.setText("G: " + greenX);
+            label_b.setText("B: " + blueX);
+
+            panel.setBackground(new Color(redX, greenX, blueX));
+        });
+
+        pane.add(panel);
+        frame.setSize(new Dimension(600 / 2, 300 * 2));
+        frame.setVisible(true);
     });
 
-    pane.add(panel);
-    frame.setSize(new Dimension(600 / 2, 300 * 2));
-    frame.setVisible(true);
+
+    f.add(label, BorderLayout.CENTER);
+    f.add(cb, BorderLayout.SOUTH);
+
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setVisible(true);
+
 }
