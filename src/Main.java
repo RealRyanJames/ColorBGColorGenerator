@@ -34,9 +34,22 @@ static String LabelText() {
 
 void main() {
 
+    var pane = (JPanel) frame.getContentPane();
     JFrame f = new JFrame();
     JLabel label = new JLabel(LabelText(), SwingConstants.CENTER);
     label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    int hour = LocalDateTime.now().getHour();
+
+    if (hour <= 11) {
+        f.getContentPane().setBackground(new Color(255, 255, 255));
+    }
+
+    else {
+        f.getContentPane().setBackground(new Color(0, 0, 0));
+        f.getContentPane().setForeground(new Color(255, 255, 255));
+        f.getContentPane().setFont(new Font("Sans-Serif", Font.BOLD, 20));
+    }
 
     label.addMouseListener(new MouseAdapter() {
         @Override
@@ -49,11 +62,13 @@ void main() {
 
     f.setSize(new Dimension(60 * 5, 60 * 2));
 
+
+
     JCheckBox cb = new JCheckBox("Confirm");
     cb.addActionListener(_ -> {
 
+
         f.setVisible(false);
-        var pane = (JPanel) frame.getContentPane();
         pane.add(button, BorderLayout.SOUTH);
         button.setBackground(GetPanesColor(Col.BLACK));
         button.setForeground(GetPanesColor(Col.WHITE));
@@ -87,6 +102,7 @@ void main() {
             panel.setBackground(new Color(redX, greenX, blueX));
         });
 
+
         pane.add(panel);
         frame.setSize(new Dimension(600 / 2, 300 * 2));
         frame.setVisible(true);
@@ -96,6 +112,7 @@ void main() {
     f.setResizable(false);
     frame.setResizable(false);
     fPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+
 
     f.add(label, BorderLayout.CENTER);
     f.add(cb, BorderLayout.SOUTH);
