@@ -51,6 +51,8 @@ void main() {
         f.getContentPane().setFont(new Font("Sans-Serif", Font.BOLD, 20));
     }
 
+    label.setFont(new Font("Sans-serif", Font.BOLD, 15));
+
     label.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -60,11 +62,12 @@ void main() {
         }
     });
 
-    f.setSize(new Dimension(60 * 5, 60 * 2));
+    f.setSize(new Dimension(80 * 5, 70 * 2));
 
 
 
     JCheckBox cb = new JCheckBox("Confirm");
+    cb.setFocusPainted(false);
     cb.addActionListener(_ -> {
 
 
