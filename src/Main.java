@@ -80,11 +80,13 @@ void main() {
         frame.setVisible(true);
     });
 
+    var fPanel = (JPanel) f.getContentPane();
+    f.setResizable(false);
+    frame.setResizable(false);
+    fPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5));
 
     f.add(label, BorderLayout.CENTER);
     f.add(cb, BorderLayout.SOUTH);
-
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
-
 }
