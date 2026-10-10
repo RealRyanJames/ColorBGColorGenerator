@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 private final JFrame frame = new JFrame();
 private final JButton button = new JButton("Generate Code");
@@ -34,7 +36,16 @@ void main() {
 
     JFrame f = new JFrame();
     JLabel label = new JLabel(LabelText(), SwingConstants.CENTER);
+    label.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+    label.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+             label.setText(String.valueOf(new StringBuilder(LabelText()).reverse()));
+
+        }
+    });
 
     f.setSize(new Dimension(60 * 5, 60 * 2));
 
@@ -57,6 +68,7 @@ void main() {
         label_r.setFont(new Font("Sans-serif", Font.BOLD, 15));
         label_g.setFont(new Font("Sans-serif", Font.BOLD, 15));
         label_b.setFont(new Font("Sans-serif", Font.BOLD, 15));
+
 
         panel.add(label_r, BorderLayout.CENTER);
         panel.add(label_g, BorderLayout.CENTER);
